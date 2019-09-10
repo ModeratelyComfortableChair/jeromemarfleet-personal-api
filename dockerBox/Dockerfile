@@ -1,8 +1,5 @@
 FROM gcc:7.3.0
 
-ENV MONGODB_URI=123
-
-
 RUN apt-get -qq update
 RUN apt-get -qq upgrade
 RUN apt-get -qq install cmake

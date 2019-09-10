@@ -33,7 +33,6 @@ using namespace crow::mustache;
 
 int main(int argc, char* argv[]){
 
-
   crow::SimpleApp app;
 
   mongocxx::instance inst{};
@@ -43,5 +42,10 @@ int main(int argc, char* argv[]){
   } catch (const std::exceution& e){
     mongoConnect = DEFAULT_MONGODB_URI_GUEST;
   }
+
+  char* port = getenv("PORT");
+  uint16_t iPort = static_cast<uint16_t>(port != NULL? stoi(port) : DEFAULT_PORT);
+  cout << "PORT = " << iPort << "\n";
+  app.port(iPort).multithreaded().run();
 
 }
